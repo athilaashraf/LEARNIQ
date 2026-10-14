@@ -5,10 +5,13 @@ from flask import Flask, render_template, request, jsonify, session
 from dotenv import load_dotenv
 load_dotenv()
 from groq import Groq
-client = Groq(api_key=os.environ.get("GEMINI_API_KEY"))
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
-app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET_KEY", "ai-tutor-secret-2024")
+app = Flask(__name__, template_folder="Templates")
+secret = os.environ.get("FLASK_SECRET_KEY")
+if not secret:
+    raise RuntimeError("Set the FLASK_SECRET_KEY environment variable")
+app.secret_key = secret
 
 
 
@@ -142,10 +145,10 @@ def call_gemini(prompt: str) -> str:
     """Call Groq with llama model and return text."""
     try:
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.4,
-            max_tokens=800,
+            max_tokens=2000,
         )
         return response.choices[0].message.content
     except Exception as e:
