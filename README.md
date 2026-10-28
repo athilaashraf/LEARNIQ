@@ -116,7 +116,6 @@ ai-tutor/
 ## 📸 Screenshots
 ![Setup Screen](Assets/setupscreen.jpeg)
 ![Learn Screen](Assets/learnscreen.jpeg)
-![Quiz Screen](Assets/quizscreen.jepg)
 ![Results Screen](Assets/resultscreen.jpeg)
 
 All the screenshots are available in Assets folder
