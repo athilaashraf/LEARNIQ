@@ -28,7 +28,6 @@ FLASK_SECRET_KEY=any_random_string
 ```bash
 python app.py
 ```
-Open browser → http://localhost:5000
 
 ---
 
